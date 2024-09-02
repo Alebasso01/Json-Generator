@@ -39,6 +39,13 @@
             <version>20210307</version>
         </dependency>
 
+        <!-- Logback Classic for Logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+
         <!-- Spring Boot Starter Test (optional, for testing purposes) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
