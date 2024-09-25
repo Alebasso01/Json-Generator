@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequestMapping("/api/json")
@@ -18,9 +17,11 @@ public class JsonController {
     public String getJsonData() {
         try {
             // Carica il file JSON dalla cartella resources
-            Path jsonFilePath = Paths.get(new ClassPathResource("data.json").getURI());
-            // Legge il contenuto del file
-            return new String(Files.readAllBytes(jsonFilePath));
+            ClassPathResource resource = new ClassPathResource("data.json");
+            // Usa InputStream per leggere il contenuto del file
+            InputStream inputStream = resource.getInputStream();
+            // Converte l'InputStream in una stringa
+            return new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
             return "{\"error\": \"Errore durante la lettura del file JSON\"}";
